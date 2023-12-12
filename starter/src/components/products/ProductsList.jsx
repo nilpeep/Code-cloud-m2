@@ -7,7 +7,7 @@ import { Header } from "../header/Header";
 const ProductsList = () => {
   return (
     <>
-      <Header />
+      <Header categories={categories} />
       <Form.Control
         placeholder="Search Product..."
         type="search"
@@ -15,7 +15,9 @@ const ProductsList = () => {
       />
       <Container className="product-list rounded-4 my-4 p-3">
         <Row className="g-3 justify-content-center">
-          <ProductCard />
+          {products.map((item) => (
+            <ProductCard key={item.id} {...item} />
+          ))}
         </Row>
       </Container>
     </>
