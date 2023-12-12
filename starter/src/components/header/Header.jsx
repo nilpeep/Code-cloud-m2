@@ -11,9 +11,10 @@ export const Header = ({ categories }) => {
         gap={3}
         className="btns justify-content-center flex-md-row"
       >
-        {categories.map((item) => (
-          <button>{item.toUpperCase()}</button>
+        {categories.map((item, index) => (
+          <button key={index} >{item.toUpperCase()}</button>
         ))}
+        
       </Stack>
     </Container>
   );
