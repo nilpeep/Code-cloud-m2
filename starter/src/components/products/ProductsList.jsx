@@ -6,20 +6,22 @@ import { Header } from "../header/Header";
 import { useState } from "react";
 
 const ProductsList = () => {
-  const [btnname, setBtnname] = useState("all");
-  const [selectedCategory, setSelectedCategory] = useState(products);
+  const updatedList = products.map((item) => ({ ...item, favorite: false }));
+  const [btnName, setBtnName] = useState("all");
+  const [selectedCategory, setSelectedCategory] = useState(updatedList);
   const [search, setSearch] = useState("");
 
   const handleFilter = (item) => {
-    setBtnname(item);
-    setSelectedCategory(
-      item == "all"
-        ? products
-        : products.filter((eleman) => eleman.category == item)
-    );
+    setBtnName(item);
   };
 
-  // console.log(btnname);
+  const handleFavorite = (id) => {
+    const updated = selectedCategory.map((item) =>
+      item.id === id ? { ...item, favorite: !item.favorite } : item
+    );
+    setSelectedCategory(updated);
+  };
+
   console.log(search);
 
   return (
@@ -33,10 +35,17 @@ const ProductsList = () => {
       />
       <Container className="product-list rounded-4 my-4 p-3">
         <Row className="g-3 justify-content-center">
-          {selectedCategory
+          {(btnName == "all"
+            ? selectedCategory
+            : selectedCategory.filter((eleman) => eleman.category == btnName)
+          )
             .filter((e) => e.title.toLowerCase().includes(search.toLowerCase()))
             .map((item) => (
-              <ProductCard key={item.id} {...item} />
+              <ProductCard
+                key={item.id}
+                {...item}
+                handleFavorite={handleFavorite}
+              />
             ))}
         </Row>
       </Container>
