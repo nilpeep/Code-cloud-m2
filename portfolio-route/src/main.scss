@@ -1,0 +1,27 @@
+@import "./scss/base/reset";
+
+@import "./scss/abstracts/mixins", "./scss/abstracts/variables","./scss/responsive";
+
+@import "./pages/about/About.scss", "./pages/contact/Contact.scss", "./pages/home/Home.scss", "./pages/projects/Projects.scss";
+
+@import "./components/footer/Footer.scss", "./components/navbar/Navbar.scss";
+
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css');
+
+body{
+    font-family: $font-family;
+    line-height: 1;
+    color: $text-color;
+    height: 100vh;
+    background-color: $primary-color;
+
+}
+
+a{
+    text-decoration: none;
+    color: $text-color;
+}
+
+h1,h2,h3{
+    font-weight: 400;
+}
