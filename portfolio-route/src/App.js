@@ -9,6 +9,8 @@ import NotFound from "./components/error/NotFound";
 function App() {
   return (
     <BrowserRouter>
+     <div class="home-bgImg-container">
+
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -18,6 +20,7 @@ function App() {
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
+     </div>
     </BrowserRouter>
   );
 }

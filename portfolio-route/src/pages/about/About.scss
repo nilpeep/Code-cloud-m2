@@ -4,7 +4,7 @@
 @import "../../scss/abstracts/mixins";
 @import "../../scss/abstracts/variables";
 .about-bgImg-container{
-    @include bgImg(50vh, $main-bgImg-path);
+    // @include bgImg(50vh, $main-bgImg-path);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -16,6 +16,7 @@
         h2{
             font-size: 3rem;
             color: $secondary-color;
+            margin-top: 10rem;
         }
 
         p{

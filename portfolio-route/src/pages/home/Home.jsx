@@ -1,6 +1,7 @@
 import "./Home"
 const Home = () => {
   return (
+   
     <main className="home">
         <h2>Hi! My Name Is</h2>
         <h1 className="home__name">

@@ -1,8 +1,11 @@
+import { useLocation } from "react-router-dom"
 import "./Footer.scss"
 
 const Footer = () => {
+  const {pathname}=useLocation()
+
   return (
-    <footer className="horizontal">
+    <footer className={`${pathname ==="/"? "horizontal": pathname==="/contacts" ? "middle" : "vertical"}`}>
   <div className="social-icons">
     <a href="#">
       <i className="fab fa-twitter fa-2x" />
