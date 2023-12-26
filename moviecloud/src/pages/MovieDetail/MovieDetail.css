@@ -1,0 +1,22 @@
+.box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1rem;
+  color: aliceblue;
+}
+
+.box img {
+  width: 20%;
+}
+
+.title {
+  font-size: 1.3rem;
+  padding: 3px;
+}
+
+.date {
+  font-size: 1.3rem;
+  color: aliceblue;
+}
