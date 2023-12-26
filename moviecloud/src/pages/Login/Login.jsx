@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
+import { LoginContext } from "../../context/LoginProvider";
 import {
   MDBBtn,
   MDBContainer,
@@ -12,14 +14,24 @@ import {
 import "./Login.css";
 
 function Login() {
+  const { state } = useLocation();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const [data, setData] = useState({ email: "", password: "" });
+  const navigate = useNavigate();
+  const { id } = useParams();
+  console.log(state);
+
+  console.log(id);
+
+  const { login, user } = useContext(LoginContext);
 
   const handleSubmit = () => {
-    setData({ email, password });
+    login({ email, password });
+    navigate(`${state.from}`);
   };
-  console.log(data);
+
+  console.log(user);
+
   return (
     <MDBContainer fluid>
       <MDBRow className="d-flex justify-content-center align-items-center h-100">
@@ -61,7 +73,7 @@ function Login() {
               <MDBBtn
                 onClick={() => handleSubmit()}
                 outline
-                className="mx-2 px-5"
+                className="mx-2 px-5 text-light"
                 color="white"
                 size="lg"
               >
@@ -71,9 +83,9 @@ function Login() {
               <div className="d-flex flex-row mt-3 mb-5">
                 <MDBBtn
                   tag="a"
-                  color="none"
-                  className="m-3"
-                  style={{ color: "white" }}
+                  color="white"
+                  className="m-3 text-light"
+                  style={{ color: "white !important" }}
                 >
                   <MDBIcon fab icon="twitter" size="lg" />
                 </MDBBtn>

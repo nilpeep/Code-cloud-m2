@@ -1,8 +1,20 @@
-import { useState } from "react";
-import { Outlet, Navigate } from "react-router-dom";
+import { useState, useContext } from "react";
+import { Outlet, Navigate, useLocation } from "react-router-dom";
+import { LoginContext } from "../context/LoginProvider";
+
 const PrivateRouter = () => {
-  const [login, setLogin] = useState(false);
-  return <>{login ? <Outlet /> : <Navigate to="/login" />}</>;
+  const { user } = useContext(LoginContext);
+
+  const { pathname } = useLocation();
+  return (
+    <>
+      {user.email && user.password ? (
+        <Outlet />
+      ) : (
+        <Navigate to="/login" state={{ from: pathname }} />
+      )}
+    </>
+  );
 };
 
 export default PrivateRouter;
