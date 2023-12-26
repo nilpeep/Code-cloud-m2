@@ -5,15 +5,29 @@ import { Link, useNavigate } from "react-router-dom";
 function MovieCard() {
   const [movies, setMovies] = useState([]);
 
+  const [search, setSearch] = useState(null);
+
   const navigate = useNavigate();
 
   const apiKey = process.env.REACT_APP_API_KEY;
   const baseUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}`;
 
-  const getMovies = () => {
-    fetch(baseUrl)
+  const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${search}`;
+
+  const getMovies = (url) => {
+    fetch(url)
       .then((res) => res.json())
       .then((res) => setMovies(res.results));
+  };
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (!search) {
+      console.log("value yok");
+      getMovies(baseUrl);
+    } else {
+      getMovies(searchUrl);
+    }
   };
 
   useEffect(() => {
@@ -23,12 +37,14 @@ function MovieCard() {
   return (
     <div>
       <div className="search-box">
-        <form>
+        <form onSubmit={handleSearch}>
           <input
             type="text"
             className="search-input"
             placeholder="Search for movies..."
             style={{ color: "black" }}
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
           />
           <i className="search-icon fas fa-search"></i>
         </form>

@@ -1,7 +1,7 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
-
+import PrivateRouter from "./components/PrivateRouter";
 import Main from "./pages/Main/Main";
 
 import MovieDetail from "./pages/MovieDetail/MovieDetail";
@@ -14,9 +14,13 @@ function App() {
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/movies" element={<Main />} />
-        <Route path="/movies/:id" element={<MovieDetail />} />
+        <Route path="/movies/:id" element={<PrivateRouter />}>
+          <Route path="" element={<MovieDetail />} />
+        </Route>
+
         <Route path="/login" element={<Login />} />
         <Route path="*" element={<NotFound />} />
+        <Route path="/movies/*" element={<NotFound />} />
       </Routes>
     </div>
   );

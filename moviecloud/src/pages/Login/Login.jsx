@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   MDBBtn,
   MDBContainer,
@@ -12,6 +12,14 @@ import {
 import "./Login.css";
 
 function Login() {
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const [data, setData] = useState({ email: "", password: "" });
+
+  const handleSubmit = () => {
+    setData({ email, password });
+  };
+  console.log(data);
   return (
     <MDBContainer fluid>
       <MDBRow className="d-flex justify-content-center align-items-center h-100">
@@ -33,6 +41,7 @@ function Login() {
                 id="formControlLg"
                 type="email"
                 size="lg"
+                onChange={(e) => setEmail(e.target.value)}
               />
               <MDBInput
                 wrapperClass="mb-4 mx-5 w-100"
@@ -41,6 +50,7 @@ function Login() {
                 id="formControlLg"
                 type="password"
                 size="lg"
+                onChange={(e) => setPassword(e.target.value)}
               />
 
               <p className="small mb-3 pb-lg-2">
@@ -49,8 +59,9 @@ function Login() {
                 </a>
               </p>
               <MDBBtn
+                onClick={() => handleSubmit()}
                 outline
-                className="mx-2 px-5 text-lime-50"
+                className="mx-2 px-5"
                 color="white"
                 size="lg"
               >
