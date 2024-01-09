@@ -22,7 +22,6 @@ function Login() {
   console.log(state);
 
   console.log(id);
-  console.log("felix branch test");
 
   const { login, user } = useContext(LoginContext);
 
